@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - hhvm
+
+script: phpunit --coverage-clover build/logs/clover.xml
+
+addons:
+  code_climate:
+    repo_token: ead81c9999c167a9dae8cd7f6b72537bf51d8898b276e7edcc096af60ed083f0 ./vendor/bin/test-reporter
+
+notifications:
+  email:
+    - bina.coulibaly@gmail.com
