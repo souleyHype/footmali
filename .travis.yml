@@ -8,7 +8,11 @@ php:
 env:
   - APP_ENV=testing
 
-script: phpunit --coverage-clover build/logs/clover.xml
+before_script: 
+  - composer install
+  - mkdir -p build/logs
+
+script: vender/bin/phpunit --coverage-clover build/logs/clover.xml
 
 addons:
   code_climate:
