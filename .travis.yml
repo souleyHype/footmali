@@ -5,6 +5,9 @@ php:
   - 5.6
   - hhvm
 
+env:
+  - APP_ENV=testing
+
 script: phpunit --coverage-clover build/logs/clover.xml
 
 addons:
