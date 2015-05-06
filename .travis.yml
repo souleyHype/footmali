@@ -6,7 +6,7 @@ php:
   - hhvm
 
 env:
-  - APP_ENV=testing CODECLIMATE_REPO_TOKEN=ead81c9999c167a9dae8cd7f6b72537bf51d8898b276e7edcc096af60ed083f0 ./vendor/bin/test-reporter
+  - APP_ENV=testing CODECLIMATE_REPO_TOKEN=ead81c9999c167a9dae8cd7f6b72537bf51d8898b276e7edcc096af60ed083f0 vendor/bin/test-reporter
 
 before_script: 
   - composer install
@@ -15,7 +15,7 @@ before_script:
 script: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  - CODECLIMATE_REPO_TOKEN=ead81c9999c167a9dae8cd7f6b72537bf51d8898b276e7edcc096af60ed083f0 ./vendro/bin/test-reporter --stdout > codeclimate.json
+  - CODECLIMATE_REPO_TOKEN=ead81c9999c167a9dae8cd7f6b72537bf51d8898b276e7edcc096af60ed083f0 vendor/bin/test-reporter --stdout > codeclimate.json
   - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
 
 addons:
