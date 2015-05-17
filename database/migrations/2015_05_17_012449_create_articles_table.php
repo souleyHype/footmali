@@ -12,7 +12,15 @@ class CreateArticlesTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('articles', function($table)
+		{
+			$table->increments('id');
+			$table->text('title');
+			$table->text('lead');
+			$table->text('body');
+			$table->text('summary');
+			$table->timestamps();
+		});
 	}
 
 	/**
@@ -22,7 +30,7 @@ class CreateArticlesTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('articles');
 	}
 
 }
