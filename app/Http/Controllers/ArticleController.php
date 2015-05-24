@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ArticleController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$articles = Article::all();
+		
+		return view('articles.index')->with('articles', $articles);
 	}
 
 	/**
@@ -34,7 +37,11 @@ class ArticleController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		// todo: validation
+		
+		Article::create(Request::all());
+		
+		return redirect('articles');
 	}
 
 	/**
@@ -45,7 +52,9 @@ class ArticleController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$article = Article::find($id);
+		
+		return view('article.show')->with('article', $article);
 	}
 
 	/**
