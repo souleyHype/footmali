@@ -3,7 +3,7 @@
 @section('content')
 	<h1>Add New Article</h1>
 	
-	{!! Form::open() !!}
+	{!! Form::open(['action' => 'ArticleController@store']) !!}
 		<div class="form-group">
 			{!! Form::label('title', 'Title') !!}	
 			{!! Form::text('title', null, ['class' => 'form-control']) !!} 

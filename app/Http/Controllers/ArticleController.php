@@ -4,7 +4,7 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Request;
 
 class ArticleController extends Controller {
 
@@ -38,10 +38,11 @@ class ArticleController extends Controller {
 	public function store()
 	{
 		// todo: validation
+		$form_input = Request::all();
+                //var_dump($form_input); exit;
+		Article::create($form_input);
 		
-		Article::create(Request::all());
-		
-		return redirect('articles');
+		return redirect(action('ArticleController@index'));
 	}
 
 	/**
@@ -52,7 +53,7 @@ class ArticleController extends Controller {
 	 */
 	public function show($id)
 	{
-		$article = Article::find($id);
+		$article = Article::findOrFail($id);
 		
 		return view('article.show')->with('article', $article);
 	}
@@ -76,7 +77,7 @@ class ArticleController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+            
 	}
 
 	/**
