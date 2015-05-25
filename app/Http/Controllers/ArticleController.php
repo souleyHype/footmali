@@ -16,8 +16,10 @@ class ArticleController extends Controller {
 	public function index()
 	{
 		$articles = Article::all();
+                
+                $template = ($this->isAdminRequest()) ? 'articles.admin.index' : 'articles.index';
 		
-		return view('articles.index')->with('articles', $articles);
+		return view($template)->with('articles', $articles);
 	}
 
 	/**

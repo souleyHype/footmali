@@ -20,5 +20,26 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-// News Article routes
-Route::resource('news', 'ArticleController');
+/*
+|--------------------------------------------------------------------------
+| Route Model Bindings
+|--------------------------------------------------------------------------
+*/
+Route::model('news', 'Articles');
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('news', 'ArticleController', array('only' => array('index', 'show')));
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'admin'], function(){
+    // News Article routes
+    Route::resource('news', 'ArticleController');
+});
