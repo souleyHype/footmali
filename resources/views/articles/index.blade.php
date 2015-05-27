@@ -1,6 +1,8 @@
 @extends('app')
 
 @section('content')
-<h1>All News Articles</h1>
+
+<h2>All Articles</h2>
+
 
 @stop

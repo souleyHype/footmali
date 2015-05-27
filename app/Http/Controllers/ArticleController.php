@@ -15,11 +15,9 @@ class ArticleController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = Article::all();
-                
-                $template = ($this->isAdminRequest()) ? 'articles.admin.index' : 'articles.index';
-		
-		return view($template)->with('articles', $articles);
+            $articles = Article::all();
+            $template = ($this->isAdminRequest()) ? 'articles.admin.index' : 'articles.index';
+            return view($template)->with('articles', $articles);
 	}
 
 	/**
@@ -29,7 +27,7 @@ class ArticleController extends Controller {
 	 */
 	public function create()
 	{
-		return view('articles.create');
+             return view('articles.admin.create');
 	}
 
 	/**
