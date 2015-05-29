@@ -39,7 +39,6 @@ class ArticleController extends Controller {
 	{
 		// todo: validation
 		$form_input = Request::all();
-                //var_dump($form_input); exit;
 		Article::create($form_input);
 		
 		return redirect(action('ArticleController@index'));
@@ -51,11 +50,9 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Article $article)
 	{
-		$article = Article::findOrFail($id);
-		
-		return view('article.show')->with('article', $article);
+            return view('articles.show', compact('article'));
 	}
 
 	/**
@@ -64,9 +61,9 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Article $article)
 	{
-		//
+            return view('articles.admin.edit', compact('article'));
 	}
 
 	/**
@@ -75,9 +72,12 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Article $article)
 	{
+            $form_input = Request::all();
+            $article->update($form_input);
             
+            return redirect(action('ArticleController@index'));
 	}
 
 	/**

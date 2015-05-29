@@ -23,7 +23,7 @@
                         <tbody>
                             @foreach ($articles as $article)
                             <tr>
-                                <td>{{ $article->title }}</td>
+                                <td><a href="{{ action('ArticleController@edit', $article->id) }}">{{ $article->title}}</a></td>
                             </tr>
                             @endforeach
                         </tbody>

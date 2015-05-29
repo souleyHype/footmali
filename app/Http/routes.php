@@ -11,6 +11,8 @@
 |
 */
 
+//App::setLocale('fr');
+        
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -20,12 +22,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-/*
-|--------------------------------------------------------------------------
-| Route Model Bindings
-|--------------------------------------------------------------------------
-*/
-Route::model('news', 'Articles');
 
 /*
 |--------------------------------------------------------------------------

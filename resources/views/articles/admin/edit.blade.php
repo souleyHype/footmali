@@ -4,11 +4,11 @@
 <div class="col-lg-12">
     <section class="box ">
         <header class="panel_header">
-            <h2 class="title pull-left">{{ Lang::get('admin.new_article') }}</h2>
+            <h2 class="title pull-left">{{ Lang::get('admin.edit_article') }}</h2>
         </header>
         <div class="content-body">    <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    {!! Form::open(['action' => 'ArticleController@store']) !!}
+                    {!! Form::model($article, ['method' => 'PATCH', 'action' => ['ArticleController@update', $article->id]]) !!}
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}	
                         {!! Form::text('title', null, ['class' => 'form-control']) !!} 

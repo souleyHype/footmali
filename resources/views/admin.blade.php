@@ -423,17 +423,26 @@
 
                     <ul class='wraplist'>	
 
-                        <li class=""> 
+                        <li class="{{ Request::is('admin/dashboard')  ? 'open' : '' }}"> 
                             <a href="index.html">
                                 <i class="fa fa-dashboard"></i>
                                 <span class="title">Dashboard</span>
                             </a>
                         </li>
-                        <li class=""> 
-                            <a href="{{ action('ArticleController@index') }}">
+                        <li class="{{ Request::is('admin/news') || Request::is('admin/news/*')  ? 'open' : '' }}"> 
+                            <a href="javascript:;" class="">
                                 <i class="fa fa-pencil"></i>
                                 <span class="title">Articles</span>
+                                <span class="arrow {{ Request::is('admin/news') || Request::is('admin/news/*')  ? 'open' : '' }}"></span>
                             </a>
+                            <ul class="sub-menu" >
+                                <li>
+                                    <a class="{{ Request::is('admin/news') ? 'active' : '' }}" href="{{ action('ArticleController@index') }}">All Articles</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Request::is('admin/news/create') ? 'active' : '' }}" href="{{ action('ArticleController@create') }}">New Article</a>
+                                </li>
+                            </ul>
                         </li>
 
                     </ul>
@@ -506,18 +515,6 @@
         <script src="{{ asset('/ultra_admin/assets/plugins/sparkline-chart/jquery.sparkline.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/ultra_admin/assets/js/chart-sparkline.js') }}" type="text/javascript"></script>
         <!-- Sidebar Graph - END --> 
-
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- General section box modal start -->
         <div class="modal" id="section-settings" tabindex="-1" role="dialog" aria-labelledby="ultraModal-Label" aria-hidden="true">
