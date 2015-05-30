@@ -11,6 +11,8 @@
 |
 */
 
+//App::setLocale('fr');
+        
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -20,5 +22,20 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-// News Article routes
-Route::resource('news', 'ArticleController');
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('news', 'ArticleController', array('only' => array('index', 'show')));
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'admin'], function(){
+    // News Article routes
+    Route::resource('news', 'ArticleController');
+});

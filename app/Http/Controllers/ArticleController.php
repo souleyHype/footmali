@@ -4,7 +4,7 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Request;
 
 class ArticleController extends Controller {
 
@@ -15,9 +15,9 @@ class ArticleController extends Controller {
 	 */
 	public function index()
 	{
-		$articles = Article::all();
-		
-		return view('articles.index')->with('articles', $articles);
+            $articles = Article::all();
+            $template = ($this->isAdminRequest()) ? 'articles.admin.index' : 'articles.index';
+            return view($template)->with('articles', $articles);
 	}
 
 	/**
@@ -27,7 +27,7 @@ class ArticleController extends Controller {
 	 */
 	public function create()
 	{
-		return view('articles.create');
+             return view('articles.admin.create');
 	}
 
 	/**
@@ -38,10 +38,10 @@ class ArticleController extends Controller {
 	public function store()
 	{
 		// todo: validation
+		$form_input = Request::all();
+		Article::create($form_input);
 		
-		Article::create(Request::all());
-		
-		return redirect('articles');
+		return redirect(action('ArticleController@index'));
 	}
 
 	/**
@@ -50,11 +50,9 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Article $article)
 	{
-		$article = Article::find($id);
-		
-		return view('article.show')->with('article', $article);
+            return view('articles.show', compact('article'));
 	}
 
 	/**
@@ -63,9 +61,9 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Article $article)
 	{
-		//
+            return view('articles.admin.edit', compact('article'));
 	}
 
 	/**
@@ -74,9 +72,12 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Article $article)
 	{
-		//
+            $form_input = Request::all();
+            $article->update($form_input);
+            
+            return redirect(action('ArticleController@index'));
 	}
 
 	/**
